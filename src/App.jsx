@@ -16,10 +16,49 @@ const Title = () => {
 const InstructorsList = ({instructors}) => {
   return instructors.length > 0 ? (
     <div>
-      YES IT IS GREATER THAN 0
+      <h2>Instructors:</h2>
+      {instructors.map(inst => {
+        return (
+          <div key={inst.id}>
+            {inst.id} - {inst.name}
+          </div>
+        )
+      })}
     </div>
   ) : (
     <div>Loading...</div>
+  )
+}
+
+const NewInstructor = () => {
+  const [name, setName] = useState('')
+
+  const createInstructor = () => {
+    axios.post('http://127.0.0.1:8000/instructors/', {
+      name: name
+    })
+    .then(response => {
+      console.log('RESPONSE: ', response)
+      if (response.status === 200) {
+        setName('')
+        getInstructors()
+      }
+    })
+    .catch(error => console.log('ERROR: ', error))
+  }
+
+  return (
+    <div>
+      <h2>Create a New Instructor:</h2>
+      <input 
+        onChange={e => setName(e.target.value)}
+        placeholder='enter name'
+        value={name}
+      />
+      <button onClick={() => createInstructor()}>
+        Create Instructor:
+      </button>
+    </div>
   )
 }
 
@@ -44,6 +83,7 @@ function App() {
     <div className="p-5">
       <Title />
       <InstructorsList instructors={instructors} />
+      <NewInstructor getInstructors={getInstructors} />
     </div>
   )
 }
