@@ -10,24 +10,24 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
-import About from './About'
+// import About from './About'
 import App from './App'
-import ErrorPage from './ErrorPage'
-import Header from './Header'
-import Footer from './Footer'
+// import ErrorPage from './ErrorPage'
+// import Header from './Header'
+// import Footer from './Footer'
 
 
-function Layout() {
-  return (
-      <>
-        <Header />
-        <div id='page-content'>
-          <Outlet />
-        </div>
-        <Footer />
-      </>
-  )
-}
+// function Layout() {
+//   return (
+//       <>
+//         {/* <Header /> */}
+//         <div id='page-content'>
+//           <Outlet />
+//         </div>
+//         {/* <Footer /> */}
+//       </>
+//   )
+// }
 
 const router = createBrowserRouter([
   {
@@ -38,11 +38,7 @@ const router = createBrowserRouter([
         path: '/',
         element: <App />,
         errorElement: <ErrorPage />
-      },
-      {
-        path: '/about',
-        element: <About />
-      },
+      }
     ]
   }
 ])
